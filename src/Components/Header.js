@@ -3,10 +3,13 @@ import PersonTracker from "./PersonTracker";
 import {useContext} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Button, Alert, Breadcrumb, Navbar, Nav, NavDropdown} from 'react-bootstrap';
-import { BrowserRouter as Router, Switch, Route ,Link, NavLink} from "react-router-dom"
-import Login from "./Login"
+import {BrowserRouter as Router, Switch, Route, Link, NavLink, BrowserRouter} from "react-router-dom"
+import AdminLogin from "./Login"
+import StudentLogin from "./StudentLogin";
+import SignUp from "./SignUp";
 import {getName} from "./firebaseUtils";
 import RoutingButton from "./RoutingButtons";
+import PrivateRoute from "./PrivateRoute";
 //you can make this dynamic and turn into something based on some outside factors. Ex: If I move past the first screen (more than one is the array), change the header to include the reset/logout
 
 //reset button
@@ -56,7 +59,8 @@ const Header = (props) => {
     }
 
 
-    return (<div>
+    return (
+        <div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Navbar.Brand onClick={() => {                          //resets when you click the germgang icon
                     reset();
@@ -87,11 +91,13 @@ const Header = (props) => {
                         </NavDropdown>
                     </Nav>
                     <Nav>
-                        <NavLink to="/login" className="btn btn-secondary">Sign in</NavLink>
+                            <Nav.Link href='/SignUp' className="btn btn-secondary">Sign Up</Nav.Link>
+                            <Nav.Link href='/StudentLogin' className="btn btn-secondary">Log In</Nav.Link>
+                            <Nav.Link href='/Login' className="btn btn-secondary">Admin</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-        </div>
+            </div>
     )
 
 
