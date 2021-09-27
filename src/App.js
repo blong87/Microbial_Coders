@@ -5,10 +5,14 @@ import {useState} from "react";
 import firebase from './firebase';
 import Header from "./Components/Header";
 import * as React from "react";
-import PersonTracker from "./Components/PersonTracker"; //context (global variables essentially) that can be used anywhere and trigger a refresh on updates
-
-
-
+import PersonTracker from "./Components/PersonTracker";
+import { Container } from 'react-bootstrap';
+import SignUp from "./Components/SignUp"; //context (global variables essentially) that can be used anywhere and trigger a refresh on updates
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {AuthProvider} from "./contexts/AuthContext";
+import Dashboard from "./Components/Dashboard";
+import StudentLogin from "./Components/StudentLogin";
+import AdminLogin from "./Components/AdminLogin";
 
 function App() {
     //set a state to use for updating array
