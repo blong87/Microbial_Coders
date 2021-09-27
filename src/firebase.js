@@ -1,9 +1,9 @@
 //for testing! Connects the app to firebase
-import "firebase/auth";
 import firebase from "firebase";
+import "firebase/auth";
 //const APIKEY = require("./secert");
 
-firebase.initializeApp({
+const app = firebase.initializeApp({
   apiKey: "AIzaSyBcTLiaUw9N-4kle7OGzECw-UoJ6MVh2NY",
   authDomain: "germgangpractice.firebaseapp.com",
   projectId: "germgangpractice",
@@ -13,4 +13,4 @@ firebase.initializeApp({
 });
 
 export const auth = firebase.auth();
-export default firebase;
+export default app;
