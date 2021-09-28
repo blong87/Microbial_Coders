@@ -6,13 +6,12 @@ import firebase from './firebase';
 import Header from "./Components/Header";
 import * as React from "react";
 import PersonTracker from "./Components/PersonTracker";
-import { Container } from 'react-bootstrap';
-import SignUp from "./Components/SignUp"; //context (global variables essentially) that can be used anywhere and trigger a refresh on updates
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import {AuthProvider} from "./contexts/AuthContext";
-import Dashboard from "./Components/Dashboard";
-import StudentLogin from "./Components/StudentLogin";
+import SignUp from "./Components/SignUpLogin/SignUp";
 import AdminLogin from "./Components/AdminLogin";
+import {BrowserRouter} from "react-router-dom";
+import StudentSignUp from "./Components/SignUpLogin/StudentSignUp";
+import Login from "./Components/Login";
+
 
 function App() {
     //set a state to use for updating array
@@ -44,22 +43,22 @@ function App() {
 
     return (
 
-  <div>
+        <div>
 
-      <PersonTracker.Provider value = {value} >
+            <PersonTracker.Provider value = {value} >
 
-          <div>
-              <Header germ = {buttonNameArray[buttonNameArray.length -1]} ></Header>
-          </div>
+                <div>
+                    <Header germ = {buttonNameArray[buttonNameArray.length -1]} ></Header>
+                </div>
 
-          <div>
-              <QuestionPage germ = {buttonNameArray[buttonNameArray.length -1]} ></QuestionPage>
-          </div>
+                <div>
+                    <QuestionPage germ = {buttonNameArray[buttonNameArray.length -1]} ></QuestionPage>
+                </div>
 
-      </PersonTracker.Provider>
+            </PersonTracker.Provider>
 
-  </div>
-  );
+        </div>
+    );
 
 }
 
