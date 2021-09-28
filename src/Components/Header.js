@@ -4,9 +4,6 @@ import {useContext} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Button, Alert, Breadcrumb, Navbar, Nav, NavDropdown} from 'react-bootstrap';
 import {BrowserRouter as Router, Switch, Route, Link, NavLink, BrowserRouter} from "react-router-dom"
-import AdminLogin from "./Login"
-import StudentLogin from "./StudentLogin";
-import SignUp from "./SignUp";
 import {getName} from "./firebaseUtils";
 import RoutingButton from "./RoutingButtons";
 import PrivateRoute from "./PrivateRoute";
@@ -91,9 +88,8 @@ const Header = (props) => {
                         </NavDropdown>
                     </Nav>
                     <Nav>
-                            <Nav.Link href='/SignUp' className="btn btn-secondary">Sign Up</Nav.Link>
-                            <Nav.Link href='/StudentLogin' className="btn btn-secondary">Log In</Nav.Link>
-                            <Nav.Link href='/Login' className="btn btn-secondary">Admin</Nav.Link>
+                            <NavLink to='/SignUpLogin/SignUp' className="btn btn-secondary">Sign Up</NavLink>
+                            <NavLink to='/Login' className="btn btn-secondary">Admin</NavLink>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
