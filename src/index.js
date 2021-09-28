@@ -4,18 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import SignUp from "./Components/SignUp";
-import StudentLogin from "./Components/StudentLogin";
 import AdminLogin from "./Components/AdminLogin";
 import AddForm from "./Components/AddForm";
 import {AuthProvider} from "./contexts/AuthContext";
+import SignUp from "./Components/SignUpLogin/SignUp";
+import StudentSignUp from "./Components/SignUpLogin/StudentSignUp";
 
 
 ReactDOM.render(
     <React.StrictMode>
-        <AuthProvider>
-            <AdminLogin />
-        </AuthProvider>
+        <StudentSignUp />
+        <AdminLogin />
     </React.StrictMode>,
   document.getElementById('root')
 );
