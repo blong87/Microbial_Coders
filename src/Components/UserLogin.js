@@ -4,10 +4,12 @@ import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import { Container } from "react-bootstrap";
 
-export default function Login() {
+import App from "../App";
+
+export default function UserLogin() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  const { login, currentUser } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -19,9 +21,9 @@ export default function Login() {
       setError("");
       setLoading(true);
       await login(emailRef.current.value, passwordRef.current.value);
-      history.push("/dashboard");
+      history.push("/");
     } catch {
-      setError("Failed to log in");
+      setError("Failed to sign up");
     }
 
     setLoading(false);
@@ -35,7 +37,8 @@ export default function Login() {
       <div className="w-100" style={{ maxWidth: "400px" }}>
         <Card>
           <Card.Body>
-            <h2 className="text-center mb-4">Admin Log In</h2>
+            <h2 className="text-center mb-4">Log In</h2>
+            {/* {currentUser && currentUser.email} */}
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
               <Form.Group id="email">
@@ -46,6 +49,7 @@ export default function Login() {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" ref={passwordRef} required />
               </Form.Group>
+
               <Button
                 disabled={loading}
                 className="btn btn-secondary w-100"
@@ -59,9 +63,6 @@ export default function Login() {
             </div>
           </Card.Body>
         </Card>
-        <div className="w-100 text-center mt-2">
-          This feature is for admins only
-        </div>
       </div>
     </Container>
   );

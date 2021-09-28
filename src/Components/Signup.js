@@ -4,10 +4,16 @@ import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import { Container } from "react-bootstrap";
 
-export default function Login() {
+import App from "../App";
+
+export default function Signup() {
+  const nameRef = useRef();
+  const schoolRef = useRef();
+  const courseRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  const passwordConfirmRef = useRef();
+  const { signup, currentUser } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -15,13 +21,17 @@ export default function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
 
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      return setError("Passwords do not match");
+    }
+
     try {
       setError("");
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
-      history.push("/dashboard");
+      await signup(emailRef.current.value, passwordRef.current.value);
+      history.push("/");
     } catch {
-      setError("Failed to log in");
+      setError("Failed to sign up");
     }
 
     setLoading(false);
@@ -35,9 +45,22 @@ export default function Login() {
       <div className="w-100" style={{ maxWidth: "400px" }}>
         <Card>
           <Card.Body>
-            <h2 className="text-center mb-4">Admin Log In</h2>
+            <h2 className="text-center mb-4">Sign Up</h2>
+            {/* {currentUser && currentUser.email} */}
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
+              <Form.Group id="name">
+                <Form.Label>Full Name</Form.Label>
+                <Form.Control type="text" ref={nameRef} required />
+              </Form.Group>
+              <Form.Group id="school">
+                <Form.Label>School</Form.Label>
+                <Form.Control type="text" ref={schoolRef} required />
+              </Form.Group>
+              <Form.Group id="course">
+                <Form.Label>Course</Form.Label>
+                <Form.Control type="text" ref={courseRef} required />
+              </Form.Group>
               <Form.Group id="email">
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" ref={emailRef} required />
@@ -46,22 +69,24 @@ export default function Login() {
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" ref={passwordRef} required />
               </Form.Group>
+              <Form.Group id="password-confirm">
+                <Form.Label>Password Confirmation</Form.Label>
+                <Form.Control
+                  type="password"
+                  ref={passwordConfirmRef}
+                  required
+                />
+              </Form.Group>
               <Button
                 disabled={loading}
                 className="btn btn-secondary w-100"
                 type="submit"
               >
-                Log In
+                Sign Up
               </Button>
             </Form>
-            <div className="w-100 text-center mt-3">
-              <Link to="/forgot-password">Forgot Password?</Link>
-            </div>
           </Card.Body>
         </Card>
-        <div className="w-100 text-center mt-2">
-          This feature is for admins only
-        </div>
       </div>
     </Container>
   );
