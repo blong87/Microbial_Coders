@@ -20,7 +20,8 @@ export default function UserLogin() {
     try {
       setError("");
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
+      if (await login(emailRef.current.value, passwordRef.current.value)) {
+      }
       history.push("/");
     } catch {
       setError("Failed to sign up");
