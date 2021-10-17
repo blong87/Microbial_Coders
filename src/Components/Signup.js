@@ -4,7 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import { Container } from "react-bootstrap";
 
-import App from "../App";
+// import App from "../App";
 
 export default function Signup() {
   const nameRef = useRef();

@@ -17,8 +17,18 @@ function App() {
     },
   ]);
 
+  // const [userSelectedGerms, setUserSelectedGerms] = useState([]);
+
+  //  const newSelectGerm = [...selectGerm, buttonNameArray];
+  //  setSelectGerm(newSelectGerm);
+  //  history = [...newSelectGerm, fullGerm];
+  //  <UserProfile history={history} />
+  //  console.log("the germ is ",history );
+
   //capture the values in an object
   const value = { buttonNameArray, updateArray };
+
+  // setUserSelectedGerms([ ... userSelectedGerms, value]);
 
   console.log(buttonNameArray); //testing
 
@@ -40,7 +50,6 @@ function App() {
         <div>
           <Header germ={buttonNameArray[buttonNameArray.length - 1]}></Header>
         </div>
-
         <div>
           <QuestionPage
             germ={buttonNameArray[buttonNameArray.length - 1]}

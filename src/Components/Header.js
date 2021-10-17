@@ -1,6 +1,8 @@
 import React from "react";
 import PersonTracker from "./PersonTracker";
 import { useContext } from "react";
+import { useAuth } from "../contexts/AuthContext";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Button,
@@ -31,7 +33,7 @@ import UserProfile from "./UserProfile";
 const Header = (props) => {
   //button/node objects from the context that are being updated
   const { buttonNameArray, updateArray } = useContext(PersonTracker); //this is the information needed. The array of buttons names and the update array function
-
+  const { currentUser } = useAuth();
   function goBack() {
     if (buttonNameArray.length > 1) {
       //create a copy
@@ -67,14 +69,19 @@ const Header = (props) => {
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand
-          onClick={() => {
-            //resets when you click the germgang icon
-            reset();
-          }}
-        >
-          GermGang
-        </Navbar.Brand>
+        <Nav>
+          <NavLink to="/">
+            <Navbar.Brand
+              onClick={() => {
+                //resets when you click the germgang icon
+                reset();
+              }}
+            >
+              GermGang
+            </Navbar.Brand>
+          </NavLink>
+        </Nav>
+
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
@@ -131,10 +138,23 @@ const Header = (props) => {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
+          <Nav>
+            <NavLink to="/germs" className="btn btn-secondary ml-1 mr-1">
+              Germs
+            </NavLink>
+          </Nav>
 
           <Nav>
+            <NavLink
+              to="/germsCollection"
+              className="btn btn-secondary ml-1 mr-1"
+            >
+              Selected Germs
+            </NavLink>
+          </Nav>
+          <Nav>
             <NavLink to="/userProfile" className="btn btn-secondary ml-1 mr-1">
-              User Profile
+              Hello
             </NavLink>
           </Nav>
 

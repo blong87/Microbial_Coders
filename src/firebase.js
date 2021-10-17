@@ -1,6 +1,7 @@
 //for testing! Connects the app to firebase
 import "firebase/auth";
 import firebase from "firebase";
+// import 'firebase/firestore'
 //const APIKEY = require("./secert");
 
 firebase.initializeApp({

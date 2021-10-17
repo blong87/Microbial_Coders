@@ -5,11 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import AdminLogin from "./Components/AdminLogin";
 import AddForm from "./Components/AddForm";
+import { StateProvider } from "./contexts/StateProvider";
+import reducer, { initialState } from "./contexts/reducer";
 // import Signup from "./Components/Signup";
 
 ReactDOM.render(
   <React.StrictMode>
-    <AdminLogin />
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <AdminLogin />
+    </StateProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

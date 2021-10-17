@@ -7,7 +7,7 @@ import { Container } from "react-bootstrap";
 export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { login } = useAuth();
+  const { login, currentUser } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -36,6 +36,7 @@ export default function Login() {
         <Card>
           <Card.Body>
             <h2 className="text-center mb-4">Admin Log In</h2>
+            {currentUser.email}
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
               <Form.Group id="email">
@@ -61,6 +62,7 @@ export default function Login() {
         </Card>
         <div className="w-100 text-center mt-2">
           This feature is for admins only
+          {currentUser.email}
         </div>
       </div>
     </Container>
