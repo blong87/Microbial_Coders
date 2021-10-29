@@ -51,15 +51,15 @@ export default function Signup() {
             <Form onSubmit={handleSubmit}>
               <Form.Group id="name">
                 <Form.Label>Full Name</Form.Label>
-                <Form.Control type="text" ref={nameRef} required />
+                <Form.Control className={"signUp"} type="text" ref={nameRef} required />
               </Form.Group>
               <Form.Group id="school">
                 <Form.Label>School</Form.Label>
-                <Form.Control type="text" ref={schoolRef} required />
+                <Form.Control className={"signUp"} type="text" ref={schoolRef} required />
               </Form.Group>
               <Form.Group id="course">
                 <Form.Label>Course</Form.Label>
-                <Form.Control type="text" ref={courseRef} required />
+                <Form.Control className={"signUp"} type="text" ref={courseRef} required />
               </Form.Group>
               <Form.Group id="email">
                 <Form.Label>Email</Form.Label>

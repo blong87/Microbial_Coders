@@ -99,7 +99,7 @@ This is just the initial styling. We need to change this to match what we're loo
   background: #f5f6f7;
 }
 
-input[type="text"] {
+input[type="text"]:not(.signUp){
   padding: 10px;
   border: 0;
   box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
