@@ -16,6 +16,8 @@ import UserLogin from "./UserLogin";
 import UserProfile from "./UserProfile";
 import GermsCollection from "./GermsCollection";
 import Germs from "./Germs";
+import ListExperiments from "./ListExperiments";
+import UsersList from "./UsersList";
 
 export default function AdminLogin() {
   async function handleSubmit(e) {
@@ -40,6 +42,8 @@ export default function AdminLogin() {
             <Route path="/userProfile" component={UserProfile} />
             <Route path="/germsCollection" component={GermsCollection} />
             <Route path="/germs" component={Germs} />
+            <Route path="/listExperiments" component={ListExperiments} />
+            <Route path="/usersList" component={UsersList} />
           </Switch>
         </AuthProvider>
       </Router>

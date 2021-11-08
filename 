@@ -1,0 +1,32 @@
+[1mdiff --git a/src/Components/StudentLogin.js b/src/Components/StudentLogin.js[m
+[1mindex ed4b125..7874a8c 100644[m
+[1m--- a/src/Components/StudentLogin.js[m
+[1m+++ b/src/Components/StudentLogin.js[m
+[36m@@ -12,7 +12,7 @@[m [mimport DeleteForm from "./DeleteForm";[m
+ import AddForm from "./AddForm";[m
+ import UpdateForm from "./UpdateForm";[m
+ [m
+[31m-export default function StudentLogin() {[m
+[32m+[m[32mexport default function AdminLogin() {[m
+ [m
+     async function handleSubmit(e) {[m
+         e.preventDefault()[m
+[36m@@ -24,11 +24,16 @@[m [mexport default function StudentLogin() {[m
+                 <AuthProvider>[m
+                     <Switch>[m
+                         <Route exact path = "/" component ={App}/>[m
+[32m+[m[32m                        <PrivateRoute exact path="/dashboard" component={Dashboard} />[m
+[32m+[m[32m                        <PrivateRoute path="/update-profile" component={UpdateProfile} />[m
+                         <Route exact path="/login" component={Login} />[m
+                         <Route path="/forgot-password" component={ForgotPassword} />[m
+[32m+[m[32m                        <Route path="/add-form" component={AddForm} />[m
+[32m+[m[32m                        <Route path="/delete-form" component={DeleteForm} />[m
+[32m+[m[32m                        <Route path="/update-form" component={UpdateForm} />[m
+                     </Switch>[m
+                 </AuthProvider>[m
+             </Router>[m
+         </div>[m
+     )[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m

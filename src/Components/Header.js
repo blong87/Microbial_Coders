@@ -2,6 +2,7 @@ import React from "react";
 import PersonTracker from "./PersonTracker";
 import { useContext } from "react";
 import { useAuth } from "../contexts/AuthContext";
+import { useStateValue } from "../contexts/StateProvider";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
@@ -25,6 +26,8 @@ import RoutingButton from "./RoutingButtons";
 import Signup from "./Signup";
 import UserLogin from "./UserLogin";
 import UserProfile from "./UserProfile";
+import UsersList from "./UsersList";
+import { auth } from "../firebase";
 
 //you can make this dynamic and turn into something based on some outside factors. Ex: If I move past the first screen (more than one is the array), change the header to include the reset/logout
 
@@ -65,7 +68,12 @@ const Header = (props) => {
       console.log("sliced and reset");
     }
   }
-
+  const [{ user, dispatch }] = useStateValue();
+  const handleAuthentication = () => {
+    if (user) {
+      auth.signOut();
+    }
+  };
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -138,40 +146,46 @@ const Header = (props) => {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
+
           <Nav>
-            <NavLink to="/germs" className="btn btn-secondary ml-1 mr-1">
-              Germs
+            <NavLink to="/usersList" className="ml-3 mr-3 text-light">
+              List of Students
+            </NavLink>
+          </Nav>
+
+          <Nav>
+            <NavLink to="/listExperiments" className="ml-3 mr-3 text-light">
+              Experiments List
+            </NavLink>
+          </Nav>
+          <Nav>
+            <NavLink to="/germsCollection" className="ml-3 mr-3 text-light">
+              Selected Germs
             </NavLink>
           </Nav>
 
           <Nav>
             <NavLink
-              to="/germsCollection"
-              className="btn btn-secondary ml-1 mr-1"
+              to={!user && "/userLogin"}
+              onClick={handleAuthentication}
+              // className="btn btn-secondary btn-xs ml-1 mr-1"
+              className="ml-3 mr-3 text-light"
             >
-              Selected Germs
-            </NavLink>
-          </Nav>
-          <Nav>
-            <NavLink to="/userProfile" className="btn btn-secondary ml-1 mr-1">
-              Hello
-            </NavLink>
-          </Nav>
-
-          <Nav>
-            <NavLink to="/userLogin" className="btn btn-secondary ml-1 mr-1">
-              Sign In
+              <div class="column">
+                <div class="span4">Hello {!user ? "Student." : user.email}</div>
+                <div class="span8">{user ? "SignOut" : "Sign In"}</div>
+              </div>
             </NavLink>
           </Nav>
 
           <Nav>
-            <NavLink to="/signup" className="btn btn-secondary ml-1 mr-1">
+            <NavLink to="/signup" className="ml-3 mr-3 text-light">
               SignUp
             </NavLink>
           </Nav>
 
           <Nav>
-            <NavLink to="/login" className="btn btn-secondary ml-1 mr-1">
+            <NavLink to="/login" className="ml-3 mr-3 text-light">
               Admin Sign in
             </NavLink>
           </Nav>

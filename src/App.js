@@ -1,10 +1,12 @@
 import "./App.css";
 import QuestionPage from "./Components/QuestionPage";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import firebase from "./firebase";
 import Header from "./Components/Header";
 import * as React from "react";
 import PersonTracker from "./Components/PersonTracker"; //context (global variables essentially) that can be used anywhere and trigger a refresh on updates
+import { auth } from "./firebase";
+import { useStateValue } from "./contexts/StateProvider";
 
 function App() {
   //set a state to use for updating array
@@ -43,6 +45,27 @@ function App() {
 
   //pusher()
   //germBase.remove()
+
+  // Keep track of who signs in
+  const [{}, dispatch] = useStateValue();
+  useEffect(() => {
+    //When a user sign in, this returns the authenticated user
+    auth.onAuthStateChanged((authUser) => {
+      console.log("USSER IS: ", authUser);
+      if (authUser) {
+        // dispatch is an object, will trigger an event save logged in user to the global storeage
+        dispatch({
+          type: "SET_USER",
+          user: authUser, //user is defined in reducer.js
+        });
+      } else {
+        dispatch({
+          type: "SET_USER",
+          user: null,
+        });
+      }
+    });
+  }, []);
 
   return (
     <div>
